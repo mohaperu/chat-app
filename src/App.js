@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import { ChatEngine } from 'react-chat-engine';
 import './App.css';
+import ChatFeed from './components/ChatFeed';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm'
+
 
 function App() {
+  if (!localStorage.getItem('username')) return <LoginForm />;
+  // if (!localStorage.getItem('username')) return <RegisterForm />;
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+    window.location.reload();
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ChatEngine
+        height='100vh'
+        projectID='df8e4cd1-a3a2-4795-933b-73ec32d9bcbe'
+        userName={localStorage.getItem('username')}
+        userSecret={localStorage.getItem('password')}
+        renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
+      />
+      <div className='button-area'>
+        <button className='logout' onClick={handleLogout} >Logout</button>
+      </div>
+    </>
   );
 }
 
