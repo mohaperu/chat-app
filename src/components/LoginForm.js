@@ -4,8 +4,8 @@ import axios from 'axios';
 const projectID = 'df8e4cd1-a3a2-4795-933b-73ec32d9bcbe';
 
 const Modal = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('test@gmail.com');
+  const [password, setPassword] = useState('Admin123@');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
@@ -31,7 +31,7 @@ const Modal = () => {
       <div className="form">
         <h1 className="title">Chat Application</h1>
         <form onSubmit={handleSubmit}>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" placeholder="Email" required />
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="input" placeholder="Username" required />
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input" placeholder="Password" required />
           <div align="center">
             <button type="submit" className="button">
